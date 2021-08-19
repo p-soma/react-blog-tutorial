@@ -10,31 +10,16 @@ const Home = () => {
     { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mario', id: 3 }
   ]);
   
+  const handleDelete = (id) => {
+    const newBlogs = blogs.filter( b => b.id !== id);
+    setBlogs( newBlogs );
+  }
   return (
     <div className="home">
-      <BlogList blogs={blogs} title="All blogs"/>
-      <BlogList blogs={blogs.filter( b => b.author.toLowerCase()==='mario')} title="Mario's blogs"/>
+      <BlogList blogs={blogs} title="All blogs" handleDelete={handleDelete}/>
+      <BlogList blogs={blogs.filter( b => b.author.toLowerCase()==='mario')} title="Mario's blogs" handleDelete={handleDelete}/>
     </div>
   );
 }
-
-// const HomeStateExample = () => {
-//   const [name, setName] = useState('mario');
-//   const [age, setAge] = useState(25);
-//   // let name = 'Mario';
-
-//   const handleClick = (e) => {
-//     setName('luigi');
-//     setAge(30);
-//   }
-
-//   return (
-//     <div className="home">
-//       <h2>Homepage</h2>
-//       <button onClick={handleClick}>Click me</button>
-//       <p>{name} is {age} years old</p>
-//     </div>
-//   );
-// }
 
 export default Home;
