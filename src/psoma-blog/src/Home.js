@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import BlogList from './BlogList';
-
 
 
 const Home = () => {
@@ -14,10 +13,16 @@ const Home = () => {
     const newBlogs = blogs.filter( b => b.id !== id);
     setBlogs( newBlogs );
   }
+
+  // useEffect() runs every time we rerender
+  useEffect( () => {
+    console.log('use effect ran');
+  });
+
+
   return (
     <div className="home">
       <BlogList blogs={blogs} title="All blogs" handleDelete={handleDelete}/>
-      <BlogList blogs={blogs.filter( b => b.author.toLowerCase()==='mario')} title="Mario's blogs" handleDelete={handleDelete}/>
     </div>
   );
 }
